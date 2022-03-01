@@ -1,1 +1,2 @@
-console.log('hi');
+//main container
+const main=document.getElementById('main');
