@@ -11,11 +11,25 @@ const loadPhones=()=>{
 if(!isNaN(inputText) || inputText == ""){
     error.className="d-inline-block text-danger"
     error.innerText="Please Enter a Text";
-}else{
+    main.innerHTML=""
+}
+
+
+else{
     error.className="d-none"
         fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
         .then(res => res.json())
-        .then (phones=> displayPhones(phones.data))
+        .then ((phones)=> {
+            console.log(phones)
+            if (phones.status == false){
+                error.className="d-inline-block text-danger"
+               error.innerText="There is no data, Search another brand phones";
+               main.innerHTML=""
+            } else{
+                error.className="d-none"
+                displayPhones(phones.data)
+            }
+        })
 }
  
 }
