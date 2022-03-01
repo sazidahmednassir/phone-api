@@ -49,10 +49,11 @@ const displayPhones= phonesInfo=>{
        
         div.classList.add("col-md-4")
         div.classList.add('my-3')
+       
         div.innerHTML=`
 
-        <div class="card  text-center" style="width: 18rem;">
-  <img src="${phone.image}" class="card-img-top sp" alt="...">
+        <div class="card  text-center centerCard" style="width: 18rem;">
+  <img src="${phone.image}" class="card-img-top sp1 p-2" alt="...">
   <div class="card-body">
     <h5 class="card-title">${phone.phone_name}</h5>
     <p class="card-text">${phone.brand}</p>
@@ -75,29 +76,32 @@ fetch(url)
 }
 
 const displayPhonesDetails=(details)=>{
-    console.log(details);
-  console.log(details.mainFeatures.sensors)
+//     console.log(details);
+//   console.log(details.mainFeatures.sensors)
   const n=details.mainFeatures.sensors.length;
     detailsDv.innerHTML=""
     const div = document.createElement('div');
     div.classList.add('card');
+    
     div.classList.add('mt-3');
     div.classList.add('sp');
     div.innerHTML = `
-    <img src="${details.image}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title"> Name: ${details.name}</h5>
-        <p  class="card-text">Sensors:  ${details.mainFeatures.sensors.slice(0, n)}</p>
-        <ul class="list-group">
-        <li class="list-group-item ">WiFi: ${othersData(details?.others?.WLAN)}</li>
-        <li class="list-group-item ">Bluetooth: ${othersData(details?.others?.Bluetooth)}</li>
-        <li class="list-group-item ">GPS: ${othersData(details?.others?.GPS)}</li>
-        <li class="list-group-item ">NFC: ${othersData(details?.others?.NFC)}</li>
-        <li class="list-group-item ">Radio: ${othersData(details?.others?.Radio)}</li>
-        </ul>
-        <p  class="card-text">Release-Date:  ${releaseData ( details.releaseDate)}</p>
-       
-    </div>
+    <img src="${details.image}" class="img-thumbnail sp2 " alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${details.name}</h5>
+    <p class="card-text">Sensors: ${details.mainFeatures.sensors.slice(0, n)} </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">WiFi: ${othersData(details?.others?.WLAN)}<</li>
+    <li class="list-group-item">Bluetooth: ${othersData(details?.others?.Bluetooth)}</li>
+    <li class="list-group-item">GPS: ${othersData(details?.others?.GPS)}</li>
+	 <li class="list-group-item">NFC: ${othersData(details?.others?.NFC)}</li>
+	  <li class="list-group-item">Radio: ${othersData(details?.others?.Radio)}</li>
+  </ul>
+  <div class="card-body">
+    <p class="card-text">Release-Date: ${releaseData ( details.releaseDate)}</p>
+  </div>
+</div>	
     `;
     detailsDv.appendChild(div);
    

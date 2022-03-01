@@ -1,19 +1,18 @@
-.card {
+.centerCard {
   align-items: center;
-  padding-top: 10px;
+}
+.d-flex {
+  display: flex !important;
+  justify-content: flex-end;
 }
 
-.card-img-top {
+.sp1 {
   width: 30%;
 }
 
-.card.text-center {
-  display: flex;
-  flex-direction: row;
-  padding-left: 45px;
-  margin-left: 33px;
-}
-
-.sp {
-  border: none;
+.sp2 {
+  width: 33%;
+  text-align: center;
+  margin-top: 2%;
+  margin-left: 35%;
 }
