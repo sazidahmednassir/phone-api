@@ -24,6 +24,27 @@ const displayPhones= phonesInfo=>{
     const n=20;
 
     const phonesInfos = phonesInfo.slice(0,n);
-
-    console.log(phonesInfos);
+   main.innerHTML=""
+   
+    // console.log(phonesInfos);
+    for (const  phone of phonesInfos ){
+        // console.log(phone)
+        const div=document.createElement('div');
+       
+        div.classList.add("col-md-4")
+        div.classList.add('my-3')
+        div.innerHTML=`
+        <div class="card " style="width: 18rem;">
+  <img src="${phone.image}" class="card-img-top img-fluid" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${phone.phone_name}</h5>
+    <p class="card-text">${phone.brand}</p>
+    <button onclick="cardDeatils('${phone.slug}')" class="btn btn-primary"> See Details</buuton>
+  
+  </div>
+</div>
+        `
+        main.appendChild(div);
+    
+    }
 }
