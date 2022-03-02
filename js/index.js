@@ -92,7 +92,7 @@ const displayPhonesDetails=(details)=>{
     <p class="card-text">Sensors: ${details.mainFeatures.sensors.slice(0, n)} </p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">WiFi: ${othersData(details?.others?.WLAN)}<</li>
+    <li class="list-group-item">WiFi: ${othersData(details?.others?.WLAN)}</li>
     <li class="list-group-item">Bluetooth: ${othersData(details?.others?.Bluetooth)}</li>
     <li class="list-group-item">GPS: ${othersData(details?.others?.GPS)}</li>
 	 <li class="list-group-item">NFC: ${othersData(details?.others?.NFC)}</li>
@@ -119,7 +119,7 @@ const othersData=(data)=>{
 //releaseData function
 const releaseData=(date)=>{
     if(date ==""){
-        return "No Date info Found"
+        return "No Release Date  Found"
     }
     else{
         return date;
