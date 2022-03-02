@@ -108,6 +108,8 @@ const showMorePhone=restinfo=>{
     if(phonesInfos.length==0){
         error.className="d-block text-danger"
         error.innerText="There is no more data";
+        show.style.display="none"
+
     } else{
         error.className="d-none";
        show.style.display="none";
