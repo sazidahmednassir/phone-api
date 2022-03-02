@@ -1,41 +1,68 @@
 // container
 const main=document.getElementById('main');
+const main1=document.getElementById('main1');
 const detailsDv= document.getElementById('phone-details')
+
+
+
+const getValue=()=>{
+    const input= document.getElementById('input-value');
+    const inputText=input.value.toLowerCase();
+   
+    return inputText;
+}
+
 
 const loadPhones=()=>{
     const error=document.getElementById('error');
-    const input= document.getElementById('input-value');
-    const inputText=input.value.toLowerCase();
-    input.value='';
-// console.log(inputText);
-// console.log(typeof(parseInt(inputText)))
+    const error1=document.getElementById('error1');
+let inputText=  getValue();
 if(!isNaN(inputText) || inputText == ""){
     error.className="d-inline-block text-danger"
-    error.innerText="Please Enter a Text";
+    error.innerText="Please Enter a Phone Name";
     main.innerHTML=""
     detailsDv.innerHTML=""
+    error1.className="d-none"
+    main1.innerHTML=""
+    
 }
 
 
 else{
     error.className="d-none"
-        fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
+      fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
         .then(res => res.json())
         .then ((phones)=> {
             // console.log(phones)
             if (phones.status == false){
                 error.className="d-inline-block text-danger"
+                error1.className="d-none"
                error.innerText="There is no data, Search another brand phones";
                main.innerHTML=""
+               main1.innerHTML=""
                detailsDv.innerHTML=""
             } else{
+                main1.innerHTML=""
+                error1.className="d-none"
                 error.className="d-none"
                 displayPhones(phones.data)
+                
             }
         })
 }
  
 }
+
+const showMorePhones =()=>{
+    let inputText=  getValue();
+    fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
+    .then(res => res.json())
+    .then(phones => showMorePhone(phones.data))
+   
+}
+
+
+
 
 const displayPhones= phonesInfo=>{
     const n=20;
@@ -67,6 +94,48 @@ const displayPhones= phonesInfo=>{
     
     }
 }
+
+const showMorePhone=restinfo=>{
+    console.log(restinfo)
+    const n=21;
+    const error=document.getElementById('error1');
+    const phonesInfos = restinfo.slice(n, restinfo.length);
+    if(phonesInfos.length==0){
+        error.className="d-block text-danger"
+        error.innerText="There is no more data";
+    } else{
+        error.className="d-none";
+       
+        main1.innerHTML=""
+        detailsDv.innerHTML=""
+         // console.log(phonesInfos);
+         for (const  phone of phonesInfos ){
+             // console.log(phone)
+             const div=document.createElement('div');
+            
+             div.classList.add("col-md-4")
+             div.classList.add('my-3')
+            
+             div.innerHTML=`
+     
+             <div class="card  text-center centerCard" style="width: 18rem;">
+       <img src="${phone.image}" class="card-img-top sp1 p-2" alt="...">
+       <div class="card-body">
+         <h5 class="card-title text-dark font-weight-bold">${phone.phone_name}</h5>
+         <p class="card-text text-danger  font-weight-bold">${phone.brand}</p>
+         <button onclick="phoneDeatils('${phone.slug}')" class="btn btn-danger"> See Details</buuton>
+       
+       </div>
+     </div>
+             `
+             main1.appendChild(div);
+         
+         }
+    }
+    
+}
+
+
 
 const phoneDeatils=(id)=>{
    const url=`https://openapi.programming-hero.com/api/phone/${id}`
