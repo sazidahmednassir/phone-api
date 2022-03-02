@@ -17,7 +17,8 @@ const loadPhones=()=>{
     const error=document.getElementById('error');
     const error1=document.getElementById('error1');
 let inputText=  getValue();
-if(!isNaN(inputText) || inputText == ""){
+
+if(!isNaN(inputText) || inputText == "" ||  inputText.length<3){
     error.className="d-inline-block text-danger"
     error.innerText="Please Enter a Phone Name";
     main.innerHTML=""
