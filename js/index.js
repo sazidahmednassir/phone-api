@@ -13,6 +13,7 @@ if(!isNaN(inputText) || inputText == ""){
     error.className="d-inline-block text-danger"
     error.innerText="Please Enter a Text";
     main.innerHTML=""
+    detailsDv.innerHTML=""
 }
 
 
@@ -55,9 +56,9 @@ const displayPhones= phonesInfo=>{
         <div class="card  text-center centerCard" style="width: 18rem;">
   <img src="${phone.image}" class="card-img-top sp1 p-2" alt="...">
   <div class="card-body">
-    <h5 class="card-title">${phone.phone_name}</h5>
-    <p class="card-text">${phone.brand}</p>
-    <button onclick="phoneDeatils('${phone.slug}')" class="btn btn-primary"> See Details</buuton>
+    <h5 class="card-title text-dark font-weight-bold">${phone.phone_name}</h5>
+    <p class="card-text text-danger  font-weight-bold">${phone.brand}</p>
+    <button onclick="phoneDeatils('${phone.slug}')" class="btn btn-danger"> See Details</buuton>
   
   </div>
 </div>
@@ -84,22 +85,22 @@ const displayPhonesDetails=(details)=>{
     div.classList.add('card');
     
     div.classList.add('mt-3');
-    div.classList.add('sp');
+    
     div.innerHTML = `
     <img src="${details.image}" class="img-thumbnail sp2 " alt="...">
   <div class="card-body">
-    <h5 class="card-title">${details.name}</h5>
-    <p class="card-text">Sensors: ${details.mainFeatures.sensors.slice(0, n)} </p>
+    <h5 class="card-title text-danger font-weight-bold">${details.name}</h5>
+    <p class="card-text"> <span class="text-primary font-weight-bold">Sensors</span>: ${details.mainFeatures.sensors.slice(0, n)} </p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">WiFi: ${othersData(details?.others?.WLAN)}</li>
-    <li class="list-group-item">Bluetooth: ${othersData(details?.others?.Bluetooth)}</li>
-    <li class="list-group-item">GPS: ${othersData(details?.others?.GPS)}</li>
-	 <li class="list-group-item">NFC: ${othersData(details?.others?.NFC)}</li>
-	  <li class="list-group-item">Radio: ${othersData(details?.others?.Radio)}</li>
+    <li class="list-group-item text-dark font-weight-bold"> <span class="text-primary font-weight-bold">WiFi</span>:  ${othersData(details?.others?.WLAN)}</li>
+    <li class="list-group-item text-dark font-weight-bold"><span class="text-primary font-weight-bold">Bluetooth</span>: ${othersData(details?.others?.Bluetooth)}</li>
+    <li class="list-group-item text-dark font-weight-bold"><span class="text-primary font-weight-bold">GPS</span>: ${othersData(details?.others?.GPS)}</li>
+	 <li class="list-group-item text-dark font-weight-bold"><span class="text-primary font-weight-bold">NFC</span>: ${othersData(details?.others?.NFC)}</li>
+	  <li class="list-group-item text-dark font-weight-bold"><span class="text-primary font-weight-bold">Radio</span>: ${othersData(details?.others?.Radio)}</li>
   </ul>
   <div class="card-body">
-    <p class="card-text">Release-Date: ${releaseData ( details.releaseDate)}</p>
+    <p class="card-text text-warning font-weight-bold"><span class="text-danger font-weight-bold">Release-Date</span>: ${releaseData ( details.releaseDate)}</p>
   </div>
 </div>	
     `;
