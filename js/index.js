@@ -3,12 +3,12 @@ const main=document.getElementById('main');
 const main1=document.getElementById('main1');
 const detailsDv= document.getElementById('phone-details')
 
-
+//button
+const show=document.getElementById('show-more')
 
 const getValue=()=>{
     const input= document.getElementById('input-value');
     const inputText=input.value.toLowerCase();
-   
     return inputText;
 }
 
@@ -25,6 +25,7 @@ if(!isNaN(inputText) || inputText == "" ||  inputText.length<3){
     detailsDv.innerHTML=""
     error1.className="d-none"
     main1.innerHTML=""
+    show.style.display='inline-block'
     
 }
 
@@ -42,10 +43,12 @@ else{
                main.innerHTML=""
                main1.innerHTML=""
                detailsDv.innerHTML=""
+               show.style.display='inline-block'
             } else{
                 main1.innerHTML=""
                 error1.className="d-none"
                 error.className="d-none"
+                show.style.display='inline-block'
                 displayPhones(phones.data)
                 
             }
@@ -97,7 +100,8 @@ const displayPhones= phonesInfo=>{
 }
 
 const showMorePhone=restinfo=>{
-    console.log(restinfo)
+    // console.log(restinfo)
+    const show=document.getElementById('show-more')
     const n=21;
     const error=document.getElementById('error1');
     const phonesInfos = restinfo.slice(n, restinfo.length);
@@ -106,7 +110,7 @@ const showMorePhone=restinfo=>{
         error.innerText="There is no more data";
     } else{
         error.className="d-none";
-       
+       show.style.display="none";
         main1.innerHTML=""
         detailsDv.innerHTML=""
          // console.log(phonesInfos);
