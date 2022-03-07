@@ -28,3 +28,7 @@ html {
   margin-top: 2%;
   margin-left: 35%;
 }
+
+#show-more {
+  display: none;
+}

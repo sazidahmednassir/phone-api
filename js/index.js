@@ -2,6 +2,7 @@
 const main=document.getElementById('main');
 const main1=document.getElementById('main1');
 const detailsDv= document.getElementById('phone-details')
+var allphones=[];
 
 //button
 const show=document.getElementById('show-more')
@@ -25,7 +26,7 @@ if(!isNaN(inputText) || inputText == "" ||  inputText.length<3){
     detailsDv.innerHTML=""
     error1.className="d-none"
     main1.innerHTML=""
-    show.style.display='inline-block'
+    // show.style.display='inline-block'
     
 }
 
@@ -43,9 +44,9 @@ else{
                main.innerHTML=""
                main1.innerHTML=""
                detailsDv.innerHTML=""
-               show.style.display='inline-block'
+            //    show.style.display='inline-block'
             } else{
-                main1.innerHTML=""
+                // main1.innerHTML=""
                 error1.className="d-none"
                 error.className="d-none"
                 show.style.display='inline-block'
@@ -72,10 +73,11 @@ const displayPhones= phonesInfo=>{
     const n=20;
 
     const phonesInfos = phonesInfo.slice(0,n);
+    allphones=[...phonesInfos];
    main.innerHTML=""
    detailsDv.innerHTML=""
     // console.log(phonesInfos);
-    for (const  phone of phonesInfos ){
+    for (const  phone of allphones ){
         // console.log(phone)
         const div=document.createElement('div');
        
@@ -105,6 +107,9 @@ const showMorePhone=restinfo=>{
     const n=21;
     const error=document.getElementById('error1');
     const phonesInfos = restinfo.slice(n, restinfo.length);
+    console.log(phonesInfos)
+    allphones=[...allphones,...phonesInfos];
+    console.log(allphones)
     if(phonesInfos.length==0){
         error.className="d-block text-danger"
         error.innerText="There is no more data";
@@ -113,10 +118,10 @@ const showMorePhone=restinfo=>{
     } else{
         error.className="d-none";
        show.style.display="none";
-        main1.innerHTML=""
+        // main1.innerHTML=""
         detailsDv.innerHTML=""
          // console.log(phonesInfos);
-         for (const  phone of phonesInfos ){
+         for (const  phone of allphones ){
              // console.log(phone)
              const div=document.createElement('div');
             
@@ -135,7 +140,7 @@ const showMorePhone=restinfo=>{
        </div>
      </div>
              `
-             main1.appendChild(div);
+             main.appendChild(div);
          
          }
     }
